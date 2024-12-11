@@ -1,0 +1,22 @@
+c-card {
+    cursor: pointer;
+    flex: 1 1 100px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    padding: 0;
+}
+
+c-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.btn {
+    border-radius: 5px; 
+    width: 100%; 
+    font-size: 2rem; 
+}
+
+c-card-body {
+    text-align: center; 
+}

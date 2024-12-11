@@ -1,0 +1,29 @@
+
+<div class="container mt-5">
+  <div class="row justify-content-between"> 
+    <div class="col-md-2" *ngFor="let card of cards">
+      <c-card routerLink="/home/companies" (click)="sendDataStatus(card.value)">
+        <button type="button" class="btn btn-primary">{{card.count}}</button>
+        <c-card-body>
+          <h5 cCardTitle>{{card.label}}</h5>
+        </c-card-body>
+      </c-card>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row mb-4">
+    <div class="col-md-2">
+      <select class="form-select" (change)="onYearChange()" [(ngModel)]="selectedYear" [ngModelOptions]="{standalone: true}" >
+        <option *ngFor="let fee of fees" [value]="fee.year" >{{ fee.year }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <canvas id="feeChart"></canvas>
+    </div>
+  </div>
+</div>  

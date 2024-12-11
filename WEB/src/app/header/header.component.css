@@ -1,0 +1,19 @@
+.breadcrumb-container {
+    padding-top: 5px;
+  }
+  
+  .breadcrumb-container .breadcrumb {
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .breadcrumb-container .breadcrumb-item a {
+    color: #0d6efd; 
+    text-decoration: none;
+  }
+  
+  .breadcrumb-container .breadcrumb-item.active {
+    color: #6c757d; 
+  }
+  

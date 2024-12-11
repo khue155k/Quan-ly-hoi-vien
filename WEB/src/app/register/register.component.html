@@ -1,0 +1,201 @@
+<div class="header-img-container">
+  <a href="http://localhost:4200/home">
+    Trang chủ
+  </a>
+</div>
+<div class="container mt-5">
+  <header class="text-center mb-4">
+    <h3>ĐĂNG KÝ THÀNH VIÊN</h3>
+  </header>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="ten_doanh_nghiep">Tên doanh nghiệp</label><span class="text-danger"> *</span>
+      <input formControlName="ten_doanh_nghiep" placeholder="Tên doanh nghiệp" class="form-control"
+        id="ten_doanh_nghiep">
+      <div
+        *ngIf="registerForm.controls['ten_doanh_nghiep'].invalid && registerForm.controls['ten_doanh_nghiep'].touched"
+        class="invalid-feedback">
+        Trường Tên doanh nghiệp không được bỏ trống.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="mst">MST</label><span class="text-danger"> *</span>
+      <input formControlName="mst" placeholder="MST" class="form-control" id="mst">
+      <div *ngIf="registerForm.controls['mst'].invalid && registerForm.controls['mst'].touched"
+        class="invalid-feedback">
+        Trường MST không được bỏ trống.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="diachi">Địa chỉ</label><span class="text-danger"> *</span>
+      <input formControlName="diachi" placeholder="Địa chỉ" class="form-control" id="diachi">
+      <div *ngIf="registerForm.controls['diachi'].invalid && registerForm.controls['diachi'].touched"
+        class="invalid-feedback">
+        Trường Địa chỉ không được bỏ trống.
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="so_dt">Điện thoại</label><span class="text-danger"> *</span>
+          <input formControlName="so_dt" placeholder="Điện thoại" class="form-control" id="so_dt">
+          <div *ngIf="registerForm.controls['so_dt'].invalid && registerForm.controls['so_dt'].touched"
+            class="invalid-feedback">
+            Trường Điện thoại không được bỏ trống.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="zalo">Zalo (SĐT sử dụng zalo)</label><span class="text-danger"> *</span>
+          <input formControlName="zalo" placeholder="Zalo (SĐT sử dụng zalo)" class="form-control" id="zalo">
+          <div *ngIf="registerForm.controls['zalo'].invalid && registerForm.controls['zalo'].touched"
+            class="invalid-feedback">
+            Trường Zalo (SĐT sử dụng zalo) không được bỏ trống.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="email">Email</label><span class="text-danger"> *</span>
+          <input formControlName="email" placeholder="Email" class="form-control" id="email">
+          <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched"
+            class="invalid-feedback">
+            Trường Email không được bỏ trống.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="website">Website</label>
+          <input formControlName="website" placeholder="Website" class="form-control" id="website">
+        </div>
+      </div>
+    </div>
+    <h5 class="mt-4">Người đại diện</h5>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="hoten_ndd">Họ tên người đứng đầu</label><span class="text-danger"> *</span>
+          <input formControlName="hoten_ndd" placeholder="Họ tên người đứng đầu" class="form-control" id="hoten_ndd">
+          <div *ngIf="registerForm.controls['hoten_ndd'].invalid && registerForm.controls['hoten_ndd'].touched"
+            class="invalid-feedback">
+            Trường Họ tên người đứng đầu không được bỏ trống.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="chucvu_ndd">Chức vụ</label>
+          <input formControlName="chucvu_ndd" placeholder="Chức vụ" class="form-control" id="chucvu_ndd">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-3">
+          <label for="ngay_sinh_ndd">Ngày sinh</label>
+          <input type="date" data-date-format="YYYY-MM-DD" formControlName="ngay_sinh_ndd" class="form-control"
+            id="ngay_sinh_ndd" />
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="so_dt_ndd">Số điện thoại</label><span class="text-danger"> *</span>
+          <input formControlName="so_dt_ndd" placeholder="Số điện thoại" class="form-control" id="so_dt_ndd">
+          <div *ngIf="registerForm.controls['so_dt_ndd'].invalid && registerForm.controls['so_dt_ndd'].touched"
+            class="invalid-feedback">
+            Trường Số điện thoại không được bỏ trống.
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="zalo_ndd">Zalo (SĐT sử dụng zalo)</label>
+          <input formControlName="zalo_ndd" placeholder="Zalo (SĐT sử dụng zalo)" class="form-control" id="zalo_ndd">
+        </div>
+        <div class="col-md-4">
+          <label for="email_ndd">Email</label><span class="text-danger"> *</span>
+          <input formControlName="email_ndd" placeholder="Email" class="form-control" id="email_ndd">
+          <div *ngIf="registerForm.controls['email_ndd'].invalid && registerForm.controls['email_ndd'].touched"
+            class="invalid-feedback">
+            Trường Email không được bỏ trống.
+          </div>
+        </div>
+      </div>
+    </div>
+    <h5 class="mt-4">Người liên hệ công việc</h5>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="hoten_nlh">Họ tên người liên hệ công việc</label><span class="text-danger"> *</span>
+          <input formControlName="hoten_nlh" placeholder="Họ tên người liên hệ công việc" class="form-control"
+            id="hoten_nlh">
+          <div *ngIf="registerForm.controls['hoten_nlh'].invalid && registerForm.controls['hoten_nlh'].touched"
+            class="invalid-feedback">
+            Trường Họ tên người liên hệ công việc không được bỏ trống.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="chucvu_nlh">Chức vụ</label>
+          <input formControlName="chucvu_nlh" placeholder="Chức vụ" class="form-control" id="chucvu_nlh">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-3">
+          <label for="ngay_sinh_nlh">Ngày sinh</label>
+          <input type="date" data-date-format="YYYY-MM-DD" formControlName="ngay_sinh_nlh" class="form-control"
+            id="ngay_sinh_nlh" />
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="so_dt_nlh">Số điện thoại</label><span class="text-danger"> *</span>
+          <input formControlName="so_dt_nlh" placeholder="Số điện thoại" class="form-control" id="so_dt_nlh">
+          <div *ngIf="registerForm.controls['so_dt_nlh'].invalid && registerForm.controls['so_dt_nlh'].touched"
+            class="invalid-feedback">
+            Trường Số điện thoại không được bỏ trống.
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="zalo_nlh">Zalo (SĐT sử dụng zalo)</label>
+          <input formControlName="zalo_nlh" placeholder="Zalo (SĐT sử dụng zalo)" class="form-control" id="zalo_nlh">
+        </div>
+        <div class="col-md-4">
+          <label for="email_nlh">Email</label><span class="text-danger"> *</span>
+          <input formControlName="email_nlh" placeholder="Email" class="form-control" id="email_nlh">
+          <div *ngIf="registerForm.controls['email_nlh'].invalid && registerForm.controls['email_nlh'].touched"
+            class="invalid-feedback">
+            Trường Email không được bỏ trống.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-check">
+      <input formControlName="dongy1" type="checkbox" class="form-check-input" id="dongy1">
+      <label class="form-check-label" for="dongy1">Sau khi nghiên cứu hiểu rõ mục tiêu, chương trình hoạt động của Hiệp
+        hội Doanh nghiệp tỉnh Hà Nam, tôi đại diện doanh nghiệp làm đơn này xin gia Hiệp hội Doanh nghiệp tỉnh Hà Nam
+        Tôi cam kết thực hiện đúng các quy định theo Điều lệ và Quy chế của Hiệp hội.</label>
+      <div *ngIf="registerForm.controls['dongy1'].invalid && registerForm.controls['dongy1'].touched"
+        class="invalid-feedback">
+        Bạn phải đồng ý với các điều khoản và điều kiện.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+  </form>
+  <c-modal #NotiModal alignment="center" id="NotiModal">
+    <c-modal-header>
+      <h5 cModalTitle>Đăng kí thành công</h5>
+      <button [cModalToggle]="NotiModal.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+      {{successMessage}}
+    </c-modal-body>
+    <c-modal-footer>
+      <button [cModalToggle]="NotiModal.id" cButton color="secondary">
+        Close
+      </button>
+    </c-modal-footer>
+  </c-modal>
+</div>
+

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "107498042824",
+    "project_id": "quan-ly-hoi-vien",
+    "storage_bucket": "quan-ly-hoi-vien.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107498042824:android:e8b87f91508a43fc2dbcfd",
+        "android_client_info": {
+          "package_name": "com.example.hoi_vien"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWNBSTHEN6MMXCklPMV9OHW4NHrFm3EEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

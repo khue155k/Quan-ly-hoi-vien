@@ -1,0 +1,48 @@
+c-container select[cSelect] {
+    display: inline;
+    margin-left: 1.2rem;
+    max-width: 120px;
+}
+
+c-container select[cSelect]:hover {
+    border-color: #0056b3;
+}
+
+#FeeDetal {
+    max-width: 600px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-button {
+    background: none;
+    border: none;
+    color: rgb(88, 86, 214);
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-button:disabled {
+    color: grey;
+    cursor: not-allowed;
+}
+
+.pagination-button.active {
+    background-color: rgb(88, 86, 214);
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination-button:hover:not(.active) {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+.card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}

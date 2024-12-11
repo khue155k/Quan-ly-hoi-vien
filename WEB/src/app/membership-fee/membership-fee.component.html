@@ -1,0 +1,106 @@
+<c-container class="mt-5" id="FeeDetal">
+    <h2 style="text-align: center;">Thông tin hội phí</h2>
+    <hr>
+    <div class="mb-3">
+        <label cLabel for="selectedYear">Năm:</label>
+        <select cSelect id="selectedYear" name="selectedYear" aria-label="Default select" [(ngModel)]="selectedYear"
+            [ngModelOptions]="{standalone: true}" (change)="onChange();">
+            <option *ngFor="let fee of fees" [value]="fee.year">{{fee.year}}</option>
+        </select>
+        <label cLabel class="d-block pt-3">Hội phí: {{fee_amount | currency:'VND':'symbol':'1.0-0'}} </label>
+    </div>
+    <button class="btn btn-primary" [cModalToggle]="addFeeModal.id" (click)="getYearFeeNext()">Thêm hội phí</button>
+
+    <c-modal #addFeeModal alignment="center" id="addFeeModal">
+        <c-modal-header>
+            <h5 cModalTitle>Thêm hội phí</h5>
+            <button [cModalToggle]="addFeeModal.id" cButtonClose></button>
+        </c-modal-header>
+        <c-modal-body>
+            Năm: {{newYear}}
+            <div class="mb-3">
+                <label cLabel for="new_fee_amount">Hội phí:</label>
+                <input cFormControl id="new_fee_amount" type="new_fee_amount" [(ngModel)]="new_fee_amount" required
+                    [ngModelOptions]="{standalone: true}">
+            </div>
+        </c-modal-body>
+        <c-modal-footer>
+            <button [cModalToggle]="addFeeModal.id" cButton color="secondary">
+                Close
+            </button>
+            <button cButton color="primary" (click)="addFee()">Thêm</button>
+        </c-modal-footer>
+    </c-modal>
+</c-container>
+
+<c-container class="mt-5">
+    <form (ngSubmit)="searchCompany()">
+        <div class="row">
+            <div class="col-md-2">
+                <select class="form-control status-select" [(ngModel)]="selectedStatus"
+                    [ngModelOptions]="{standalone: true}" (change)="searchCompany()">
+                    <option value="0">Chưa đóng</option>
+                    <option value="1">Đã đóng</option>
+                </select>
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control" placeholder="Nhập tên công ty để tìm kiếm"
+                    [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}" (keyup.enter)="searchCompany()" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" type="submit">Tìm kiếm</button>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <c-card class="row w-100 mb-4 mx-3" *ngFor="let company of companies;" (click)="showMembershipPay(company)">
+            <c-card-body>
+                <h5 cCardTitle>{{company.ten_doanh_nghiep}}</h5>
+                <p cCardText>
+                    Địa chỉ: {{company.diachi}}
+                </p>
+                <p cCardText>
+                    MST: {{company.mst}}
+                </p>
+                <div *ngIf="selectedCompany && company.id == selectedCompany.id">
+                    <h4>Thông tin hội phí</h4>
+                    <hr>
+                    <p><strong>Năm:</strong> {{ selectedYear }}</p>
+                    <p><strong>Hội phí:</strong> {{ company.fee_amount }}</p>
+                    <p><strong>Trạng thái:</strong> {{ convertStatusFee(company.status) }}</p>
+
+                    <ng-container *ngIf="company.status!=0">
+                        <p><strong>Ngày đóng:</strong> {{ company.payment_date | date: 'yyyy-MM-dd' }}</p>
+                        <p><strong>Hình thức đóng:</strong> {{ company.payment_method }}</p>
+                    </ng-container>
+
+                    <ng-container *ngIf="company.status==0">
+                        <label for="paymentMethod" class="me-3"><strong>Hình thức đóng:</strong></label>
+                        <select id="paymentMethod" class="form-select w-auto" [(ngModel)]="seletedPaymentMethod"
+                            style="display: inline;" [ngModelOptions]="{standalone: true}">
+                            <option value="Chuyển khoản">Chuyển khoản</option>
+                            <option value="Tiền mặt">Tiền mặt</option>
+                        </select>
+                        <button class="btn btn-primary mb-3" style="display: block;" (click)="payFee()">Đóng hội phí</button>
+                    </ng-container>
+                </div>
+
+            </c-card-body>
+        </c-card>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button class="pagination-button" (click)="prePage()" [disabled]="currentPage === 1"
+                *ngIf="currentPage > 1">«</button>
+
+            <ng-container *ngFor="let page of getListPage()">
+                <button class="pagination-button" [ngClass]="{'active': currentPage === page}" (click)="goToPage(page)">
+                    {{ page }}
+                </button>
+            </ng-container>
+
+            <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage >= totalPages"
+                *ngIf="currentPage < totalPages">»</button>
+        </div>
+    </div>
+</c-container>

@@ -1,0 +1,161 @@
+<div class="m-4">
+    <form (ngSubmit)="searchCompany()">
+        <div class="row mb-1">
+            <div class="col-md-2">
+                <select class="form-control status-select" [(ngModel)]="selectedStatus" [ngModelOptions]="{standalone: true}" (change)="searchCompany()" > 
+                    <option value="0">Từ chối</option>
+                    <option value="1">Chưa duyệt</option>
+                    <option value="2">Đã duyệt</option>
+                    <option value="3">Thành viên cũ (trước 2014)</option>
+                    <option value="4">Tất cả</option>
+                </select>
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control" placeholder="Nhập tên công ty để tìm kiếm"
+                [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}" (keyup.enter)="searchCompany()" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" type="submit">Tìm kiếm</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-md-6 p-3">
+            <c-card class="row w-100 mb-4" *ngFor="let company of companies;" (click)="getCompanyDetailById(company.id);scrollToTarget()">
+                <c-card-body>
+                    <h5 cCardTitle>{{company.ten_doanh_nghiep}}</h5>
+                    <p cCardText>
+                        Địa chỉ: {{company.diachi}}
+                    </p>
+                    <p cCardText>
+                        MST: {{company.mst}}
+                    </p>
+                </c-card-body>
+            </c-card>
+        </div>
+        <div class="col-md-6" *ngIf="selectedCompany!=null" id="companyDetail">
+            <h3>Thông tin doanh nghiệp</h3>
+            <table>
+                <tr>
+                    <th>Tên doanh nghiệp:</th>
+                    <td>{{selectedCompany.ten_doanh_nghiep}}</td>
+                </tr>
+                <tr>
+                    <th>Mã số thuế:</th>
+                    <td>{{selectedCompany.mst}}</td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ:</th>
+                    <td>{{selectedCompany.diachi}}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td>{{selectedCompany.so_dt}}</td>
+                </tr>
+                <tr>
+                    <th>Zalo:</th>
+                    <td>{{selectedCompany.zalo}}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{selectedCompany.email}}</td>
+                </tr>
+                <tr>
+                    <th>Website:</th>
+                    <td>{{selectedCompany.website}}</td>
+                </tr>
+                <tr>
+                    <th>Thành lập vào:</th>
+                    <td>{{selectedCompany.created_at}}</td>
+                </tr>
+                <tr>
+                    <th>Hoạt động gần nhất:</th>
+                    <td>{{selectedCompany.updated_at}}</td>
+                </tr>
+                <tr>
+                    <th>Tình trạng:</th>
+                    <td id="status">{{getStatusText(selectedCompany.status)}}</td>
+                </tr>
+            </table>
+            <h4>Thông tin người đại diện</h4>
+            <table>
+                <tr>
+                    <th>Họ tên:</th>
+                    <td>{{selectedCompany.hoten_ndd}}</td>
+                </tr>
+                <tr>
+                    <th>Chức vụ:</th>
+                    <td>{{selectedCompany.chucvu_ndd}}</td>
+                </tr>
+                <tr>
+                    <th>Ngày sinh:</th>
+                    <td>{{selectedCompany.ngay_sinh_ndd}}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td>{{selectedCompany.so_dt_ndd}}</td>
+                </tr>
+                <tr>
+                    <th>Zalo:</th>
+                    <td>{{selectedCompany.zalo_ndd}}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{selectedCompany.email_ndd}}</td>
+                </tr>
+            </table>
+            <h4>Thông tin người liên hệ</h4>
+            <table>
+                <tr>
+                    <th>Họ tên:</th>
+                    <td>{{selectedCompany.hoten_nlh}}</td>
+                </tr>
+                <tr>
+                    <th>Chức vụ:</th>
+                    <td>{{selectedCompany.chucvu_nlh}}</td>
+                </tr>
+                <tr>
+                    <th>Ngày sinh:</th>
+                    <td>{{selectedCompany.ngay_sinh_nlh}}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td>{{selectedCompany.so_dt_nlh}}</td>
+                </tr>
+                <tr>
+                    <th>Zalo:</th>
+                    <td>{{selectedCompany.zalo_nlh}}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{selectedCompany.email_nlh}}</td>
+                </tr>
+            </table>
+            <div class="mt-3 button-container" *ngIf="isAdmin == true">
+                <ng-container *ngIf="selectedCompany.status === 1">
+                    <button type="button" class="btn btn-success" (click)="onApprove()">Duyệt</button>
+                    <button type="button" class="btn btn-danger" (click)="onReject()">Từ chối</button>
+                </ng-container>
+                <ng-container *ngIf="selectedCompany.status === 2">
+                    <button type="button" class="btn btn-danger" (click)="onCancelApprove()">Hủy duyệt</button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button class="pagination-button" (click)="prePage()" [disabled]="currentPage === 1"
+                *ngIf="currentPage > 1">«</button>
+
+            <ng-container *ngFor="let page of getListPage()">
+                <button class="pagination-button" [ngClass]="{'active': currentPage === page}" (click)="goToPage(page)">
+                    {{ page }}
+                </button>
+            </ng-container>
+
+            <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage >= totalPages"
+                *ngIf="currentPage < totalPages">»</button>
+        </div>
+    </div>
+</div>

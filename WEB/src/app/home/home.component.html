@@ -1,0 +1,25 @@
+<c-sidebar visible="true" #sidebar="cSidebar" class="d-print-none sidebar sidebar-fixed border-end" id="sidebar">
+    <c-sidebar-header class="border-bottom">
+        <c-sidebar-brand>Sidebar Brand</c-sidebar-brand>
+    </c-sidebar-header>
+
+    <ng-scrollbar #scrollbar="ngScrollbar" class="overflow" pointerEventsMethod="scrollbar" visibility="hover">
+        <c-sidebar-nav [navItems]="navItems" cSidebarToggle="sidebar"/>
+        <c-sidebar-nav [navItems]="navItemsLogout" (click)="logout()" />
+    </ng-scrollbar>
+
+    <c-sidebar-footer cSidebarToggle="sidebar" class="border-top justify-content-end" toggle="visible"
+        style="cursor: pointer;" >
+        <button cSidebarToggler aria-label="Toggle sidebar fold" ></button>
+    </c-sidebar-footer>
+</c-sidebar>
+
+<div class="d-flex flex-column min-vh-100" id="main">
+    <app-header class="header"></app-header>
+    <div class="body flex-grow-1">
+        <c-container breakpoint="lg" class="h-auto px-4">
+          <router-outlet />
+        </c-container>
+      </div>
+    <app-footer class="mt-auto"></app-footer>
+</div>

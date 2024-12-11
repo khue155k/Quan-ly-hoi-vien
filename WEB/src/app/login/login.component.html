@@ -1,0 +1,24 @@
+<c-container>
+  <form cForm (ngSubmit)="onSubmit()">
+    <h2 style="text-align: center;">Login</h2>
+    <div class="mb-3">
+      <label cLabel for="email">Email:</label>
+      <input cFormControl id="email" type="email" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="mb-3">
+      <label cLabel for="password">Password:</label>
+      <input cFormControl id="password" type="password" [(ngModel)]="password" required
+        [ngModelOptions]="{standalone: true}">
+    </div>
+    <c-form-check class="mb-3">
+      <input cFormCheckInput id="rememberMe" name="rememberMe" type="checkbox" [(ngModel)]="rememberMe">
+      <label cFormCheckLabel for="rememberMe">Nhớ tài khoản</label>
+    </c-form-check>
+
+    <button cButton type="submit">Đăng nhập</button>
+    <a href="http://localhost:4200/register">
+      Đăng kí hội viên
+    </a>
+  </form>
+
+</c-container>

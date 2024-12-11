@@ -1,0 +1,20 @@
+<!-- header.component.html -->
+<ng-container>
+    <c-container [fluid]="true" class="border-bottom px-4">
+      <button
+        [cSidebarToggle]="sidebarId()"
+        cHeaderToggler
+        class="btn"
+        toggle="visible"
+        style="margin-inline-start: -14px;"
+        aria-label="Toggle sidebar navigation"
+      >
+        <svg cIcon name="cilMenu" size="lg"></svg>
+      </button>
+    </c-container>
+</ng-container>
+<ng-container>
+  <c-container [fluid]="true" class="px-4 breadcrumb-container">
+    <c-breadcrumb-router />
+  </c-container>
+</ng-container>
